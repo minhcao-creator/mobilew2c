@@ -1,0 +1,141 @@
+3,6,9
+3,7,10
+1,2
+7,10
+1,3,7
+
+1,2,3,6,7,9,10
+
+
+GET /auth
+request: req.userId
+response: res.json({ 
+			success: true, 
+			user: {
+			    username, email, password, phone, createdAt
+			}
+		})
+
+
+
+POST /auth/register
+request: req.body: {
+			username, password, phone, email
+		}
+response: res.json({
+			success: true,
+			message: 'User created successfully',
+			accessToken
+		})
+		
+	
+		
+POST /auth/login
+request: req.body: {
+			email, password
+		}
+response: res.json({
+			success: true,
+			message: 'User logged in successfully',
+			accessToken
+		})
+		
+##############################################################################################################
+	
+GET /ingredients
+
+request: req.useId
+response: res.json({
+			success: true,
+			data: [
+				{
+					name: 'Củ',
+					foodData: [{ title, image, descrption }]
+				},
+				{
+					name: 'Rau',
+					foodData: [{title, image, descrption}]
+				},
+				{
+					name: 'Cá',
+					foodData: [{title, image, descrption}]
+				},
+				{
+					name: 'Thịt',
+					foodData: [{title, image, descrption}]
+				},
+				{
+					name: 'Nấm',
+					foodData: [{title, image, descrption}]
+				}
+			]
+		})
+		
+
+POST: /ingredients
+request: req.useId
+		req.body: { imageBase64 }
+response: res.json({
+			success: true,
+			message: 'Recognization successfully',
+			ingredient: { name, image, descrption, type, createdAt }
+		})
+		
+
+DELETE: /ingredients/:ingredientId
+request: req.useId
+		req.params: {ingredientId}
+response: res.json({
+			success: true,
+			message: 'Delete successfully'
+		})
+
+###########################################################################################################
+
+POST: /meals/render
+request: req.useId
+		req.body: [ingredientId]
+response: res/json({
+			success: true,
+			message: 'Render meals successfully',
+			meals:[{title, image, recipe, type: false}]
+		})
+
+###########################################################################################################
+
+GET /meals
+request: req.useId
+response: res.json({
+			success: true,
+			meals: [{title, image, recipe, type: favorite?}]
+		})
+
+GET /meals/favorite
+request: req.useId
+response: res.json({
+			success: true,
+			meals: [{title, image, recipe}]
+		})
+
+PUT /meals/:mealId
+request: req.useId
+response: res.json({
+			success: true,
+			message: 'Add favorite meal successfully'
+		})
+
+PUT /meals/:mealId
+request: req.useId
+response: res.json({
+			success: true,
+			message: 'Remove favorite meal successfully'
+		})
+
+DELETE /meals/:mealId
+request: req.useId
+response: res.json({
+			success: true,
+			message: 'Delete meal successfully'
+		})
+
+		
